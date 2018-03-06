@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" />
+  <Import Project="..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
+  <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,11 +10,12 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>SerializerComparison</RootNamespace>
     <AssemblyName>SerializerComparison</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,56 +49,131 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.19.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.19.2\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=5.1.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.5.1.2\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.19.2.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.19.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="Hyperion, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hyperion.0.9.8\lib\net45\Hyperion.dll</HintPath>
     </Reference>
-    <Reference Include="Hyperion, Version=0.9.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hyperion.0.9.2\lib\net45\Hyperion.dll</HintPath>
+    <Reference Include="Jil, Version=2.15.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jil.2.15.4\lib\net45\Jil.dll</HintPath>
     </Reference>
-    <Reference Include="Jil, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jil.2.15.0\lib\net45\Jil.dll</HintPath>
+    <Reference Include="Microsoft.DotNet.InternalAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.DotNet.InternalAbstractions.1.0.0\lib\net451\Microsoft.DotNet.InternalAbstractions.dll</HintPath>
     </Reference>
-    <Reference Include="MsgPack, Version=0.8.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
-      <HintPath>..\packages\MsgPack.Cli.0.8.1\lib\net46\MsgPack.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.1.0.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
     </Reference>
-    <Reference Include="NetJSON, Version=1.2.1.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NetJSON.1.2.1.9\lib\net40\NetJSON.dll</HintPath>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.0.1\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="MsgPack, Version=0.9.0.0, Culture=neutral, PublicKeyToken=a2625990d5dc0167, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsgPack.Cli.0.9.2\lib\net46\MsgPack.dll</HintPath>
+    </Reference>
+    <Reference Include="NetJSON, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetJSON.1.2.2\lib\net40\NetJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.5\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.13\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
+    <Reference Include="Polenter.SharpSerializer, Version=3.0.1.0, Culture=neutral, PublicKeyToken=8f4f20011571ee5f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpSerializer.3.0.1\lib\net452\Polenter.SharpSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.3.7.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.3.7\lib\net40\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="Sigil, Version=4.7.0.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Sigil.4.7.0\lib\net45\Sigil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.1.0\lib\net46\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Console, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.0.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.0.1\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.1.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.0.1\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.0.1\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.1.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.1.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.1.0\lib\net46\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.0.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.0.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.1.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.assert, Version=2.2.0.3545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.assert.2.2.0\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.core, Version=2.2.0.3545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.core.2.2.0\lib\netstandard1.1\xunit.core.dll</HintPath>
+    <Reference Include="xunit.core, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.core.2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.2.0.3545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.execution.2.2.0\lib\net452\xunit.execution.desktop.dll</HintPath>
+    <Reference Include="xunit.execution.desktop, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.execution.2.3.1\lib\net452\xunit.execution.desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="YAXLib, Version=2.15.0.0, Culture=neutral, PublicKeyToken=15c43682c986900f, processorArchitecture=MSIL">
+      <HintPath>..\packages\YAXLib.2.15\lib\net4.0\YAXLib.dll</HintPath>
     </Reference>
     <Reference Include="ZeroFormatter, Version=1.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ZeroFormatter.1.6.4\lib\net45\ZeroFormatter.dll</HintPath>
@@ -145,11 +222,20 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.0.0.4787\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.0.0.4787\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.7.0.0.4787\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props'))" />
+    <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\packages\xunit.core.2.3.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.3.1\build\xunit.core.targets'))" />
+    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
+  <Import Project="..\packages\xunit.core.2.3.1\build\xunit.core.targets" Condition="Exists('..\packages\xunit.core.2.3.1\build\xunit.core.targets')" />
 </Project>

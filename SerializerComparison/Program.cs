@@ -1,4 +1,5 @@
 ﻿using NLog;
+using Polenter.Serialization;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace SerializerComparison
 {
@@ -20,6 +22,11 @@ namespace SerializerComparison
             var process = Process.GetCurrentProcess();
             process.ProcessorAffinity = (System.IntPtr)1;
             process.PriorityClass = ProcessPriorityClass.High;
+
+            //YAXLib.YAXSerializer yaxSerializer = new YAXLib.YAXSerializer(typeof(PersonWithoutAttributes));
+            var sharpSerializer = new SharpSerializer();
+
+            XmlSerializer pureXmlSerializer = new XmlSerializer(typeof(PersonWithoutAttributes));
 
             DataContractSerializer xmldcs = new DataContractSerializer(typeof(PersonWithoutAttributes));
             var settings = new DataContractJsonSerializerSettings()
@@ -127,8 +134,33 @@ namespace SerializerComparison
                 xmldcs.WriteObject(stream, p);
             }, TestRunner.CreatePersonWithoutAttributes());
 
-            TestRunner.PrintMeasurements(measurements, "DataContractSerializer Stream Serialization");
+            TestRunner.PrintMeasurements(measurements, "DataContractSerializer Stream Serialization [XML] ");
             logger.Debug($"DataContractSerializer Stream Serialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+
+
+            measurements = TestRunner.RunTestSerialize((PersonWithoutAttributes p, Stream stream) =>
+            {
+                pureXmlSerializer.Serialize(stream, p);
+            }, TestRunner.CreatePersonWithoutAttributes());
+
+            TestRunner.PrintMeasurements(measurements, "XmlSerializer Stream Serialization [XML] ");
+            logger.Debug($"XmlSerializer Stream Serialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+            
+            measurements = TestRunner.RunTestSerialize((PersonWithoutAttributes p, Stream stream) =>
+            {
+                sharpSerializer.Serialize(p, stream);
+            }, TestRunner.CreatePersonWithoutAttributes());
+
+            TestRunner.PrintMeasurements(measurements, "SharpSerializer Object Serialization [XML] ");
+            logger.Debug($"SharpSerializer Object Serialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+
+            ////measurements = TestRunner.RunTestSerialize((PersonWithoutAttributes p) =>
+            ////{
+            ////    yaxSerializer.Serialize(p);
+            ////}, TestRunner.CreatePersonWithoutAttributes());
+
+            ////TestRunner.PrintMeasurements(measurements, "YaxLib Object Serialization [XML] ");
+            ////logger.Debug($"YaxLib Object Serialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
 
             measurements = TestRunner.RunTestSerialize((Person p, Stream stream) =>
             {
@@ -264,15 +296,33 @@ namespace SerializerComparison
             }, TestRunner.FormatType.MsgPackFormat);
 
             TestRunner.PrintMeasurements(measurements, "MsgPack Stream Deserialization");
-            logger.Debug($"MsgPack Stream Deserialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+            logger.Debug($"MsgPack Stream Deserialization : {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
 
             measurements = TestRunner.RunTestDeserialize((stream) =>
             {
                 xmldcs.ReadObject(stream);
             }, TestRunner.FormatType.XmlFormat);
 
-            TestRunner.PrintMeasurements(measurements, "DataContractSerializer Stream Deserialization");
+            TestRunner.PrintMeasurements(measurements, "DataContractSerializer Stream Deserialization [xml]");
             logger.Debug($"DataContractSerializer Stream Deserialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+
+            //// Crash
+            //measurements = TestRunner.RunTestDeserialize((Stream stream) =>
+            //{
+            //    sharpSerializer.Deserialize(stream);
+            //}, TestRunner.FormatType.XmlFormat);
+
+            //TestRunner.PrintMeasurements(measurements, "SharpSerializer Stream Deserialization [xml]");
+            //logger.Debug($"SharpSerializer Stream Deserialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
+
+            //// Crash
+            //measurements = TestRunner.RunTestDeserialize((stream) =>
+            //{
+            //    yaxSerializer.Deserialize(stream);
+            //}, TestRunner.FormatType.XmlFormat);
+
+            //TestRunner.PrintMeasurements(measurements, "YaxLib Stream Deserialization [xml]");
+            //logger.Debug($"YaxLib Stream Deserialization: {string.Join(":", measurements.Select(m => TestRunner.ConvertToMicroSeconds(m)))}");
 
             measurements = TestRunner.RunTestDeserialize((stream) =>
             {
